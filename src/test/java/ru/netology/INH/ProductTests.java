@@ -102,7 +102,7 @@ public class ProductTests {
     }
 
     @Test
-    public void searchByTest() {
+    public void searchByMoreOneTest() {
 
         ProductRepository repository = new ProductRepository();
         ProductManager manager = new ProductManager(repository);
@@ -114,7 +114,33 @@ public class ProductTests {
         expected[0] = book;
         expected[1] = book1;
         Product[] actual = manager.searchBy("Кот");
-        ;
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchByOneTest() {
+
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(book);
+        manager.add(smartphone);
+        Product[] expected = new Product[1];
+        expected[0] = book;
+        Product[] actual = manager.searchBy("Кот");
+        Assertions.assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void searchByZeroTest() {
+
+        ProductRepository repository = new ProductRepository();
+        ProductManager manager = new ProductManager(repository);
+
+        manager.add(book);
+        manager.add(smartphone);
+        Product[] expected = new Product[0];
+        Product[] actual = manager.searchBy("Собака");
         Assertions.assertArrayEquals(expected, actual);
     }
 

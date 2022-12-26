@@ -13,6 +13,11 @@ public class ProductRepository {
     }
 
     public void removeById(int id) {
+        if (this.findById(id) == null) {
+            throw new NotFoundException(
+                    "Element with id: " + id + " not found"
+            );
+        }
         Product[] tmp = new Product[items.length - 1];
         int copyToIndex = 0;
         for (Product item : items) {
@@ -24,7 +29,17 @@ public class ProductRepository {
         items = tmp;
     }
 
-    public Product[] findAll() {
-        return items;
+        public Product[] findAll () {
+            return items;
+        }
+
+        public Product findById ( int id){
+            Product[] tmp = new Product[items.length];
+            for (int i = 0; i < items.length; i++) {
+                if (items[i].ID == id) {
+                    return items[i];
+                }
+            }
+            return null;
+        }
     }
-}

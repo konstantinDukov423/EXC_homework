@@ -87,6 +87,18 @@ public class ProductTests {
     }
 
     @Test
+    public void removeByIdNotFoundExceptionTest() {
+
+        ProductRepository repository = new ProductRepository();
+
+        repository.save(book);
+        repository.save(smartphone);
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repository.removeById(3);
+        });
+    }
+
+    @Test
     public void addTest() {
 
         ProductRepository repository = new ProductRepository();

@@ -29,17 +29,17 @@ public class ProductRepository {
         items = tmp;
     }
 
-        public Product[] findAll () {
-            return items;
-        }
-
-        public Product findById ( int id){
-            Product[] tmp = new Product[items.length];
-            for (int i = 0; i < items.length; i++) {
-                if (items[i].ID == id) {
-                    return items[i];
-                }
-            }
-            return null;
-        }
+    public Product[] findAll() {
+        return items;
     }
+
+    public Product findById(int id) {
+        Product[] tmp = new Product[items.length];
+        for (int i = 0; i < items.length; i++) {
+            if (items[i].ID == id) {
+                return items[i];
+            }
+        }
+        return null;
+    }
+}
